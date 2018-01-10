@@ -241,6 +241,7 @@ module Shoulda
         def matched_column
           @_matched_column ||= begin
             column = model_class.columns.detect { |each| each.name == @column.to_s }
+            column = model_class.ignored_columns.detect { |each| each.name == @column.to_s } if column.nil?
             DecoratedColumn.new(model_class, column)
           end
         end
