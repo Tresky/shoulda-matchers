@@ -138,7 +138,7 @@ module Shoulda
         protected
 
         def column_exists?
-          if model_class.column_names.include?(@column.to_s)
+          if model_class.column_names.include?(@column.to_s) || model_class.ignored_columns.include?(@column.to_s)
             true
           else
             @missing = "#{model_class} does not have a db column named #{@column}."
